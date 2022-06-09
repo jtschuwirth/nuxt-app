@@ -13,6 +13,8 @@
             </button>
             <span>Connected as</span>
             <span>{{this.$store.state.account.slice(0,15)}}</span>
+            <span>Chain Id</span>
+            <span>{{this.$store.state.chainId}}</span>
          </div>
     </div>
 </template>
@@ -26,6 +28,7 @@ export default {
      "ethereum"
     ],
     mounted() {
+        this.ethereum.on('chainChanged', (_chainId) => window.location.reload());
         this.isMetaMaskConnected().then((connected) => {
             if (connected) {
                 // metamask is connected
@@ -41,8 +44,10 @@ export default {
             console.log("connecting to metamask")
             try {
                 const accounts = await this.ethereum.request({ method: 'eth_requestAccounts' });
+                const chainId = await this.web3.eth.getChainId()
                 const account = accounts[0];
                 this.$store.commit('setAccount', account)
+                this.$store.commit('setChainId', chainId)
 
             } catch (error) {
                 console.error(error);

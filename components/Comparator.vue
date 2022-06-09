@@ -6,10 +6,9 @@
         <label for="">SEll</label>
         <div>
         <input name="sellInput" type="number">
-        <select name="sell" id="">
+        <select name="sell" id="" @change="sellHandler($event)">
             <option value="" selected disabled>select</option>
-            <option value="one">one</option>
-            <option v-for="value, key in coins" :key="value" :value="value">{{key}}</option>
+            <option v-for="value, key in coins" :key="value.address" :value="[value.address,value.decimals]">{{key}}</option>
         </select>
         </div>
         </div>
@@ -17,10 +16,9 @@
         <div class="label">
         <label for="">BUY</label>
         <div>
-        <select name="buy" id="">
+        <select name="buy" id="" @change="buyHandler($event)">
             <option value="" selected disabled>select</option>
-            <option value="one">one</option>
-            <option v-for="value, key in coins" :key="value" :value="value">{{key}}</option>
+            <option v-for="value, key in coins" :key="value.address" :value="[value.address,value.decimals]">{{key}}</option>
         </select>
         </div>
         </div>
@@ -36,12 +34,12 @@ const RouterABI = require("../static/abi.json");
 
 export default {
     name: "Comparator",
-    props: {
-        web3: Function,
-    },
+    props: ["web3"],
     data() {
         return {
-            coins: Object
+            coins: Object,
+            sell: Object,
+            buy: Object
         }
     },
     beforeMount() {
@@ -50,11 +48,21 @@ export default {
     methods: {
         async get(event) {
             event.preventDefault();
-            let input = event.target.sellInput.value;
-            let sell = event.target.sell.value;
-            let buy = event.target.buy.value
+            var BN = this.web3.utils.BN;
+            let input = new BN(event.target.sellInput.value, 10).mul( new BN(10, 10).pow(new BN(this.sell.decimals, 10)) );
             const RouterContract = new this.web3.eth.Contract(RouterABI, RouterAddress);
-            let result = await RouterContract.methods.getAmountsOut(input, [sell, buy]).call();
+            let result = await RouterContract.methods.getAmountsOut(input, [this.sell.address, this.buy.address]).call();
+            console.log(result[1]/(10**this.buy.decimals))
+        },
+        sellHandler(evt) {
+            let address = evt.target.value.split(",")[0]
+            let decimals = evt.target.value.split(",")[1]
+            this.sell = {address, decimals}
+        },
+        buyHandler(evt) {
+            let address = evt.target.value.split(",")[0]
+            let decimals = evt.target.value.split(",")[1]
+            this.buy = {address, decimals}
         }
     }
 }
