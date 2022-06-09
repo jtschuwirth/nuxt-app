@@ -17,14 +17,14 @@
     </div>
 </template>
 
-<script lang="ts">
-
+<script>
+import { PropOptions } from 'vue'
 export default {
     name: "Sidebar",
-    props: {
-        web3: Function,
-        ethereum: Function,
-    },
+    props: [
+     "web3",
+     "ethereum"
+    ],
     mounted() {
         this.isMetaMaskConnected().then((connected) => {
             if (connected) {

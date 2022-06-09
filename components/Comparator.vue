@@ -53,10 +53,8 @@ export default {
             let input = event.target.sellInput.value;
             let sell = event.target.sell.value;
             let buy = event.target.buy.value
-            console.log(input, sell, buy)
             const RouterContract = new this.web3.eth.Contract(RouterABI, RouterAddress);
             let result = await RouterContract.methods.getAmountsOut(input, [sell, buy]).call();
-            console.log(result)
         }
     }
 }

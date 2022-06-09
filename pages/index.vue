@@ -8,22 +8,16 @@
 </div>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
-const Web3 = require('web3');
-
-declare global {
-  interface Window {
-    ethereum: any;
-  }
-}
+import Web3 from 'web3';
 
 export default Vue.extend({
   name: 'IndexPage',
   data() {
     return {
-      ethereum: Object,
-      web3: Object,
+      ethereum: null,
+      web3: null,
     }
   },
   beforeMount() {
