@@ -1,9 +1,14 @@
 [
   {
+    "name": "comparator",
+    "path": "/comparator",
+    "component": "/home/jtschuwirth/Projects/nuxt-app/pages/comparator.vue",
+    "chunkName": "pages/comparator"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/home/jtschuwirth/Projects/nuxt-app/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_06b55f03"
+    "chunkName": "pages/index"
   }
 ]

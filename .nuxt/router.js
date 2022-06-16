@@ -4,6 +4,7 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
+const _1ef25f75 = () => interopDefault(import('../pages/comparator.vue' /* webpackChunkName: "pages/comparator" */))
 const _06b55f03 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
@@ -18,6 +19,10 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
+    path: "/comparator",
+    component: _1ef25f75,
+    name: "comparator"
+  }, {
     path: "/",
     component: _06b55f03,
     name: "index"

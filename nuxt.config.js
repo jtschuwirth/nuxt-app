@@ -35,9 +35,16 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/axios'
   ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-  }
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      baseURL: 'https://a6oywywsoj.execute-api.us-east-1.amazonaws.com/beta/aggregator'
+    }
+  },
 }

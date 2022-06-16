@@ -1,9 +1,19 @@
 <template>
     <div class="sidebar">
+        <div>
         <p class="sidebar-title">
-            Nuxt App
+            José Tomas Schuwirth
         </p>
+        <div class="links">
+            <NuxtLink to="/">Home page</NuxtLink>
+            <NuxtLink to="/comparator">Defi Comparator</NuxtLink>
+        </div>
+        </div>
         <div class="connected">
+            <span>Connected as</span>
+            <span class="metamask-data">{{this.$store.state.account.slice(0,5)}}...{{this.$store.state.account.slice(-4)}}</span>
+            <span>Chain Id</span>
+            <span class="metamask-data">{{this.$store.state.chainId}}</span>
             <button class="metamask-btn" @click="connectMetamask()">
             <img 
                 src="https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg" 
@@ -11,10 +21,6 @@
                 class="metamask-image">
             Connect Metamask
             </button>
-            <span>Connected as</span>
-            <span>{{this.$store.state.account.slice(0,15)}}</span>
-            <span>Chain Id</span>
-            <span>{{this.$store.state.chainId}}</span>
          </div>
     </div>
 </template>
@@ -67,10 +73,11 @@ export default {
     .sidebar {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         min-height: 100%;
         width: 200px;
-        background-color: green;
-        padding: 1.5em;
+        background-color: lightgray;
+        padding: 1em;
     }
     .sidebar-title {
         margin-bottom: 5em;
@@ -88,5 +95,19 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: 0.5em;
+    }
+    .metamask-data {
+        font-size: 22px;
+        color: black;
+    }
+    .links {
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+    a { 
+        text-decoration: none;
+        color: black;
     }
 </style>

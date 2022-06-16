@@ -2,6 +2,8 @@
 <div class="main">
   <Sidebar :web3=web3 :ethereum=ethereum />
   <div class="index">
+    <h1>Defi Comparator</h1>
+    <Comparator :web3=web3 />
   </div>
 </div>
 </template>
