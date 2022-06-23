@@ -1,6 +1,6 @@
 export const state = () => ({
-  account: "Not Connected",
-  chainId: "Not Connected",
+  account: null,
+  chainId: null,
 })
 
 

@@ -13,7 +13,7 @@ import Vue from 'vue'
 import Web3 from 'web3';
 
 export default Vue.extend({
-  name: 'IndexPage',
+  name: 'ComparatorPage',
   data() {
     return {
       ethereum: null,

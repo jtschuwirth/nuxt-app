@@ -2,6 +2,7 @@
 <div class="main">
   <Sidebar :web3=web3 :ethereum=ethereum />
   <div class="index">
+    <h1>Home Page</h1>
   </div>
 </div>
 </template>

@@ -10,9 +10,9 @@
         </div>
         </div>
         <div class="connected">
-            <span>Connected as</span>
-            <span class="metamask-data">{{this.$store.state.account.slice(0,5)}}...{{this.$store.state.account.slice(-4)}}</span>
-            <span>Chain Id</span>
+            <span>Connected as:</span>
+            <span class="metamask-data" v-if="this.$store.state.account">{{this.$store.state.account.slice(0,5)}}...{{this.$store.state.account.slice(-4)}}</span>
+            <span>Chain Id:</span>
             <span class="metamask-data">{{this.$store.state.chainId}}</span>
             <button class="metamask-btn" @click="connectMetamask()">
             <img 
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import { PropOptions } from 'vue'
 export default {
     name: "Sidebar",
     props: [
@@ -41,7 +40,7 @@ export default {
                 this.connectMetamask();
             } else {
                 // metamask is not connected
-                this.$store.commit('setAccount', "Not Connected")
+                this.$store.commit('setAccount', null)
             }
         });
     },
